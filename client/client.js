@@ -10,7 +10,16 @@ if (Meteor.isClient) {
         return Officials.find();
     };
 
+    Template.input.events({
+        'click #search': function() {
+            var address = $('#address').val();
+            if (!address) {
+                alert('Enter in your address!');
+            }
+            Meteor.call('fetchOfficialData', address);
 
+        }
+    });
 }
 
 
