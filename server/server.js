@@ -30,57 +30,38 @@ if (Meteor.isServer) {
             });
         },
         getRepInfo: function() {
-            //var rep_hash = new Future();
+            this.unblock()
             API_KEY = "cfa496ce390e49b0b57d5ddab36e70a2"
             url = "http://transparencydata.com/api/1.0/entities.json?search=Mike%20Feuer&apikey=" + API_KEY;
-            Meteor.http.get(url, function( err, res ) {
-                //rep_hash = rep_hash.return(res);
-                return res;
-            });
-            //return rep_hash.wait();
+            return Meteor.http.call("GET", url);
         },
         getRepId: function(){
-            //var repId = new Future();
+            this.unblock()
             API_KEY = "cfa496ce390e49b0b57d5ddab36e70a2"
             url = "http://transparencydata.com/api/1.0/entities.json?search=Mike%20Feuer&apikey=" + API_KEY;
-            Meteor.http.get(url, function( err, res ) {
-                //epId = repId.return(res['data'][0]['id']);
-                return res['data'][0]['id'];
-            });
-            //return repId.wait();
+            return Meteor.http.call("GET", url);
         },
         getRepOverview: function(){
-            //var repDetails = new Future();
+            this.unblock()
             root_url = 'http://transparencydata.com/api/1.0/entities/';
             id = 'c9c21fa172c64602a1eee643e4bedb4a';
             format = '.json?apikey=';
             API_KEY = "cfa496ce390e49b0b57d5ddab36e70a2";
             url = root_url + id + format + API_KEY;
-            Meteor.http.get(url, function( err, res ) {
-                //repDetails = repDetails.return(res);
-                return res;
-            });
-            //return repDetails.wait();
+            return Meteor.http.call("GET", url);
         },
         getCampaignContributions: function(){
-            //var contributions = new Future();
+            this.unblock()
             root_url = 'http://transparencydata.com/api/1.0/contributions.json?amount=%3E%7C5000&recipient_ft=';
             name = 'Mike%20Feuer';
             API_KEY = "cfa496ce390e49b0b57d5ddab36e70a2";
             url = root_url + name + '&per_page=20' + '&apikey=' + API_KEY;
-            Meteor.http.get(url, function( err, res ) {
-                console.log(res);
-                return res;
-            });
+            return Meteor.http.call("GET", url);
         },
         getVendorMatch: function(){
-            //var vendors = new Future();
+            this.unblock()
             url = 'https://controllerdata.lacity.org/resource/7bbq-8b9r.json';
-            Meteor.http.get(url, function( err, res ) {
-                //vendors = vendors.return(res.data[0]);
-                return res.data[0];
-            });
-            //return vendors.wait();
+            return Meteor.http.call("GET", url);
         }
     });
 }

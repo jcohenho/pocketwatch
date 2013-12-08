@@ -1,25 +1,4 @@
 if (Meteor.isClient) {
-    Meteor.startup( function() {
-        Meteor.call( 'openSession', function( err, res ) {
-            if( !err) Session.set( 'google-data', res );
-        });
-        Meteor.call('getRepInfo', function(err, res) {
-          if (!err) Session.set('sunlight-data', res);
-        });
-        Meteor.call('getRepId', function(err, res){
-            if (!err) Session.set('repId', res)
-        });
-        Meteor.call('getRepOverview', function(err, res){
-            if (!err) Session.set('repOverview', res)
-        });
-        Meteor.call('getCampaignContributions', function(err, res){
-            if (!err) Session.set('contributions', res)
-                console.log(res);
-        });
-        Meteor.call('getVendorMatch', function(err, res){
-            if (!err) Session.set('vendors', res);
-        });
-    });
 
     Template.repoverview.bio = function(){
         return Session.get('repOverview') ? Session.get('repOverview').data.metadata.bio : '';
@@ -48,6 +27,37 @@ if (Meteor.isClient) {
                 alert('Enter in your address!');
             }
             Meteor.call('fetchOfficialData', address);
+        }
+    });
+
+    Template.content.events({
+        'click .info': function(){
+            console.log('clicked');
+            Meteor.call('getRepOverview', function(err, res){
+                Session.set('sunlight-data', res);
+                console.log(Session.get('sunlight-data'));
+            });
+            Meteor.call('getRepInfo', function(err, res){
+                Session.set('repInfo', res);
+                console.log(Session.get('repInfo'));
+            });
+            Meteor.call('getRepId', function(err, res){
+                Session.set('repId', res);
+                console.log(Session.get('repId'));
+            });
+            Meteor.call('getRepOverview', function(err, res){
+                Session.set('repOverview', res);
+                console.log(Session.get('repOverview'));
+            });
+            Meteor.call('getCampaignContributions', function(err, res){
+                Session.set('campaignContribs', res);
+                console.log(Session.get('campaignContribs'));
+            });
+            Meteor.call('getVendorMatch', function(err, res){
+                Session.set('vendorMatch', res);
+                console.log(Session.get('vendorMatch'));
+
+            });
         }
     });
 
