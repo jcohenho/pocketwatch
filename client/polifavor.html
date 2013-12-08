@@ -80,9 +80,9 @@
 </template>
 
 <template name='repoverview'>
-    <div>
-        Bio: {{bio}}
-        Photo: <img src={{photo}}></img>
+    <div class='rep-details'>
+        <div><img src={{photo}}></img></div>
+        <div class='rep-bio'>Bio: {{bio}}</div>
         Political Contributions Received to Date: ${{contribution_sums}}
     </div>
 </template>

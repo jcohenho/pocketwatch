@@ -3,6 +3,16 @@ figure {
     width: 33%;
 }
 
+.rep-details img{
+  height: 120px;
+}
+
 figure img:hover{
   opacity: 0.5;
-};
+}
+
+.rep-bio{
+  width: 30%;
+  height: 200px;
+  overflow-y: scroll;
+}
