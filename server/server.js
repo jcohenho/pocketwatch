@@ -46,7 +46,6 @@ if (Meteor.isServer) {
         },
         getRepOverview: function(repId){
             this.unblock();
-            console.log(repId);
             root_url = 'http://transparencydata.com/api/1.0/entities/';
             id = repId;
             format = '.json?apikey=';
@@ -56,8 +55,7 @@ if (Meteor.isServer) {
         },
         getCampaignContributions: function(name){
             this.unblock()
-            root_url = 'http://transparencydata.com/api/1.0/contributions.json?amount=%3E%7C5000&recipient_ft=';
-            //name = 'Mike%20Feuer';
+            root_url = 'http://transparencydata.com/api/1.0/contributions.json?amount=%3E%7C3000&recipient_ft=';
             API_KEY = "cfa496ce390e49b0b57d5ddab36e70a2";
             url = root_url + name + '&per_page=20' + '&apikey=' + API_KEY;
             return Meteor.http.call("GET", url);

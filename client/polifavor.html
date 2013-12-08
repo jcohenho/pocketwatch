@@ -19,12 +19,20 @@
         <div class='row'>
             <div class='span6'>
                 {{> donations}}
-                {{> repoverview}}
             </div>
         </div>
         <div class='vendors row'>
             <div class='span6'>
                 {{> vendors}}
+            </div>
+        </div>
+    </div>
+    <div class='container'>
+        <div class="row">
+            <div class="span12">
+                <div class="rep-info-zone">
+                    {{> repoverview}}
+                </div>
             </div>
         </div>
     </div>
@@ -78,6 +86,7 @@
     <div>
         Bio: {{bio}}
         Photo: <img src={{photo}}></img>
+        Political Contributions Received to Date: ${{contribution_sums}}
     </div>
 </template>
 

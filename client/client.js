@@ -1,11 +1,26 @@
 if (Meteor.isClient) {
 
     Template.repoverview.bio = function(){
-        return Session.get('repOverview') ? Session.get('repOverview').data.metadata.bio : '';
+        bio = Session.get('repOverview') ? Session.get('repOverview').data.metadata.bio : 'Not Available';
+        if (bio == undefined){
+            return 'Not Available'
+        } else{
+            return bio;
+        }
     }
 
     Template.repoverview.photo = function(){
-        return Session.get('repOverview') ? Session.get('repOverview').data.metadata.photo_url : '';
+        alt_photo = Session.get('repOverview') ? Session.get('repOverview').data.metadata.photo_url : '';
+        if (alt_photo == undefined){
+            return 'Not Available'
+        } else{
+            return alt_photo;
+        }
+    }
+
+    Template.repoverview.contribution_sums = function(){
+        contrib_sum = Session.get('repOverview') ? Session.get('repOverview').data.totals['-1']['recipient_amount'] : '';
+        return contrib_sum;
     }
 
     Template.donations.total_received = function(){
@@ -42,11 +57,12 @@ if (Meteor.isClient) {
             });
             Meteor.call('getRepId', name, function(err, res){
                 Session.set('repId', res);
-            });
-            Meteor.call('getRepOverview', Session.get('repId').data['0'].id, function(err, res){
-                Session.set('repOverview', res);
+                Meteor.call('getRepOverview', Session.get('repId').data['0'].id, function(err, res){
+                    Session.set('repOverview', res);
+                });
             });
             Meteor.call('getCampaignContributions', name, function(err, res){
+                console.log(res);
                 Session.set('campaignContribs', res);
             });
             Meteor.call('getVendorMatch', function(err, res){
