@@ -18,27 +18,35 @@
             {{> input }}
         </div>
     </section>
-        {{> content}}
-        <div class='row'>
-            <div class='span6'>
-                {{> donations}}
+    <section class='rep-section'>
+        <div class='container'>
+            <div class='wrapper'>
+                {{> content}}
             </div>
         </div>
-    </div>
-    <div class='container'>
-        <div class="row">
-            <div class="span12">
-                <div class="rep-info-zone">
-                    {{> repoverview}}
+    </section>
+    <section>
+        <div class='container'>
+            <div class="row">
+                <div class="span12">
+                    <div class="rep-info-zone">
+                        {{> repoverview}}
+                    </div>
                 </div>
+            <div class='row'>
+                <div class='span12'>
+                    {{> donations}}
+                </div>
+            </div></div>
+            <div class='row'>
+                <div class='span12'>
+                    <div class='vendors'>
+                        {{> vendors}}
+                    </div>
+                <div>
             </div>
         </div>
-        <div class='vendors row'>
-            <div class='span6'>
-                {{> vendors}}
-            </div>
-        </div>
-    </div>
+    </section>
 </body>
 
 
@@ -54,7 +62,7 @@
 
 
 <template name='official'>
-    <div class='span3 info'>
+    <div class='span6 info'>
         <figure class='rep' id='{{name}}'>
             <img src={{photo}} />
             <figcaption>{{name}}</figcaption>
@@ -71,10 +79,9 @@
 </template>
 
 <template name='donations'>
-    <div class="row">
         <div class='donation-list'>
             {{#each arrayify donation_collection}}
-                <div class='single-donation'>
+            <div class='single-donation'>
                     <div>Organization Name:{{org_name}}</div>
                     <div>Amount:${{amount}}</div>
                     <div>Donor City:{{city}}</div>
@@ -82,24 +89,24 @@
                     <div>Occupation:{{occupation}}</div>
                     <div class='employer' id="{{employer}}">Employer:{{employer}}</div>
                     <div>Contributor Type:{{contrib_type}}</div>
-                </div>
+            </div>
             {{/each}}
         </div>
-    </div>
 </template>
 
 <template name='repoverview'>
     <div class='rep-details'>
-        <div><img src={{photo}}></img></div>
-        <div class='rep-bio'>Bio: {{bio}}</div>
-        <div class='contributions-to-date'><h4>Political Contributions Received to Date: ${{contribution_sums}}</h4></div>
+        <div>
+            <img src={{photo}}></img>
+        </div>
+        <div class='rep-bio'>{{bio}}</div>
+        <div class='contributions-to-date'><h4>{{$contribution_sums}}</h4></div>
     </div>
 </template>
 
 <template name='vendors'>
     <div>
         Vendor: {{vendor_name}}
-        <img src='http://localhost:3000/person-icon.png' class='vendor-icon'/>
         <div class='contribution-wrapper'>
             <div class='given-to-rep'>Donated To Rep: {{contribution}}</div>
             <div class='given-from-rep'>Money From City: {{amount}}</div>

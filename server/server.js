@@ -14,7 +14,7 @@ if (Meteor.isServer) {
                     for (var i = 0; i < Object.keys(officials_data).length; i++) {
                         var p_index = 'P' + i;
                         if (!officials_data[p_index].photoUrl) {
-                            var photo = 'http://lorempixel.com/90/110/';
+                            var photo = 'http://www.ihssports.org/portals/2/profilephotos/person-icon.png';
                         }
                         else {
                             var photo = officials_data[p_index].photoUrl;

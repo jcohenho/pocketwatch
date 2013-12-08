@@ -98,13 +98,25 @@ input#address {
     box-shadow: 1px 1px 4px #eee;
 }
 
+.rep-section {
+    background: url(../stars_stripes.png) no-repeat;
+    height: 647px;
+}
+
+.container .wrapper {
+margin-top: 100px;
+}
+
 
 figure {
-    width: 33%;
 }
 
 .rep-details img{
   height: 120px;
+}
+
+.rep img {
+height: 190px;
 }
 
 .rep:hover{
@@ -113,14 +125,19 @@ figure {
 }
 
 .rep-bio{
-  width: 30%;
-  height: 200px;
+  font-size: 1.5em;
+  line-height: 1.5em;
   overflow-y: scroll;
 }
 
 .donation-list{
   height: 300px;
   overflow: scroll;
+  font-size: 1.5em;
+  line-height:1.5em;
+  font-family: 'Helvetica';
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .single-donation{
@@ -139,6 +156,10 @@ figure {
 }
 .vendor-contribution{
   height: 50px;
+}
+
+.rep-info-zone {
+    margin-top: 100px;
 }
 
 
@@ -170,3 +191,10 @@ input[type="button"]{
   padding-top: 20px;
   text-align: center;
 }
+
+figcaption {
+    font-size: 22px;
+    color: #FFF;
+
+}
+

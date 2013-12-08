@@ -21,7 +21,7 @@ if (Meteor.isClient) {
 
     Template.repoverview.contribution_sums = function(){
         contrib_sum = Session.get('repOverview') ? Session.get('repOverview').data.totals['-1']['recipient_amount'] : '';
-        return contrib_sum;
+        return 'Political Contributions Received to Date: ' + contrib_sum;
     }
 
     Template.donations.total_received = function(){
