@@ -19,14 +19,18 @@ if (Meteor.isServer) {
                         else {
                             var photo = officials_data[p_index].photoUrl;
                         }
-                        params = {
-                            name: officials_data[p_index].name,
-                            address: officials_data[p_index].address,
-                            channels: officials_data[p_index].channels,
-                            party: officials_data[p_index].party,
-                            photo: photo
+                        console.log(officials_data);
+                        if (officials_data[p_index].name =='Eric Garcetti' || officials_data[p_index].name == 'Mike Feuer' ||
+                            officials_data[p_index].name == 'Leroy Baca' || officials_data[p_index].name == 'Barbara Boxer'){
+                            params = {
+                                name: officials_data[p_index].name,
+                                address: officials_data[p_index].address,
+                                channels: officials_data[p_index].channels,
+                                party: officials_data[p_index].party,
+                                photo: photo
+                            }
+                            Officials.insert(params);
                         }
-                        Officials.insert(params);
 
                     }
                 }
