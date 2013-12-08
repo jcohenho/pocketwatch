@@ -32,31 +32,32 @@ if (Meteor.isServer) {
                 }
             });
         },
-        getRepInfo: function() {
+        getRepInfo: function(name) {
             this.unblock()
             API_KEY = "cfa496ce390e49b0b57d5ddab36e70a2"
-            url = "http://transparencydata.com/api/1.0/entities.json?search=Mike%20Feuer&apikey=" + API_KEY;
+            url = "http://transparencydata.com/api/1.0/entities.json?search=" + name + "&apikey=" + API_KEY;
             return Meteor.http.call("GET", url);
         },
-        getRepId: function(){
+        getRepId: function(name){
             this.unblock()
             API_KEY = "cfa496ce390e49b0b57d5ddab36e70a2"
-            url = "http://transparencydata.com/api/1.0/entities.json?search=Mike%20Feuer&apikey=" + API_KEY;
+            url = "http://transparencydata.com/api/1.0/entities.json?search=" + name + "&apikey=" + API_KEY;
             return Meteor.http.call("GET", url);
         },
-        getRepOverview: function(){
-            this.unblock()
+        getRepOverview: function(repId){
+            this.unblock();
+            console.log(repId);
             root_url = 'http://transparencydata.com/api/1.0/entities/';
-            id = 'c9c21fa172c64602a1eee643e4bedb4a';
+            id = repId;
             format = '.json?apikey=';
             API_KEY = "cfa496ce390e49b0b57d5ddab36e70a2";
             url = root_url + id + format + API_KEY;
             return Meteor.http.call("GET", url);
         },
-        getCampaignContributions: function(){
+        getCampaignContributions: function(name){
             this.unblock()
             root_url = 'http://transparencydata.com/api/1.0/contributions.json?amount=%3E%7C5000&recipient_ft=';
-            name = 'Mike%20Feuer';
+            //name = 'Mike%20Feuer';
             API_KEY = "cfa496ce390e49b0b57d5ddab36e70a2";
             url = root_url + name + '&per_page=20' + '&apikey=' + API_KEY;
             return Meteor.http.call("GET", url);

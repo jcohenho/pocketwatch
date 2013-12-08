@@ -31,32 +31,26 @@ if (Meteor.isClient) {
     });
 
     Template.content.events({
-        'click .info': function(){
+        'click .info': function(event){
             console.log('clicked');
+            var name = encodeURI($(event.currentTarget).siblings().attr('id'));
             Meteor.call('getRepOverview', function(err, res){
                 Session.set('sunlight-data', res);
-                console.log(Session.get('sunlight-data'));
             });
-            Meteor.call('getRepInfo', function(err, res){
+            Meteor.call('getRepInfo', name, function(err, res){
                 Session.set('repInfo', res);
-                console.log(Session.get('repInfo'));
             });
-            Meteor.call('getRepId', function(err, res){
+            Meteor.call('getRepId', name, function(err, res){
                 Session.set('repId', res);
-                console.log(Session.get('repId'));
             });
-            Meteor.call('getRepOverview', function(err, res){
+            Meteor.call('getRepOverview', Session.get('repId').data['0'].id, function(err, res){
                 Session.set('repOverview', res);
-                console.log(Session.get('repOverview'));
             });
-            Meteor.call('getCampaignContributions', function(err, res){
+            Meteor.call('getCampaignContributions', name, function(err, res){
                 Session.set('campaignContribs', res);
-                console.log(Session.get('campaignContribs'));
             });
             Meteor.call('getVendorMatch', function(err, res){
                 Session.set('vendorMatch', res);
-                console.log(Session.get('vendorMatch'));
-
             });
         }
     });
