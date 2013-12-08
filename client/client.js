@@ -1,14 +1,13 @@
 if (Meteor.isClient) {
     Meteor.startup( function() {
         Meteor.call( 'openSession', function( err, res ) {
-            console.log(res);
-            if( !err) Session.set( 'data', res );
+            if( !err) Session.set( 'google-data', res );
         });
     });
 
 
-    Template.content.res = function () {
-        return Session.get('data').content;
+    Template.content.officials = function () {
+        return Officials.find();
     };
 
     Template.hello.events({
