@@ -60,10 +60,10 @@ if (Meteor.isServer) {
             url = root_url + name + '&per_page=20' + '&apikey=' + API_KEY;
             return Meteor.http.call("GET", url);
         },
-        getVendorMatch: function(){
-            this.unblock()
-            url = 'https://controllerdata.lacity.org/resource/7bbq-8b9r.json';
-            return Meteor.http.call("GET", url);
+        getVendorMatch: function(employer){
+            this.unblock();
+            url = 'https://controllerdata.lacity.org/resource/pggv-e4fn.json?$q=' + employer;
+            return Meteor.http.call("GET", url)
         }
     });
 }

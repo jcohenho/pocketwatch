@@ -52,34 +52,49 @@ if (Meteor.isClient) {
 
     Template.content.events({
         'click .info': function(event){
+
             var name = encodeURI($(event.currentTarget).children().attr('id'));
-            Meteor.call('getRepOverview', function(err, res){
-                Session.set('sunlight-data', res);
-            });
             Meteor.call('getRepInfo', name, function(err, res){
                 Session.set('repInfo', res);
             });
             Meteor.call('getRepId', name, function(err, res){
                 Session.set('repId', res);
-                Meteor.call('getRepOverview', Session.get('repId').data['0'].id, function(err, res){
-                    Session.set('repOverview', res);
-                });
+                setTimeout(function(){
+
+                    Meteor.call('getRepOverview', res.data['0'].id, function(err, res){
+                        Session.set('repOverview', res);
+                    });
+                }, 300)
             });
             Meteor.call('getCampaignContributions', name, function(err, res){
                 Session.set('campaignContribs', res);
             });
-            Meteor.call('getVendorMatch', function(err, res){
-                Session.set('vendorMatch', res);
-            });
         }
     });
 
-    Template.vendors.expenditure = function(){
-        return Session.get('vendors') ? Session.get('vendors')['sum_dollar_amount'] : '';
-    }
+    Template.donations.events({
+        'click .single-donation': function(event){
+            console.log('clicked!')
+            var employer = encodeURI($(event.currentTarget).children()[5].id);
+            employer = employer.replace('&', 'and')
+            Meteor.call('getVendorMatch', employer, function(err, res){
+                Session.set('vendorMatch', res.data[0]);
+            });
+            var vendor_contrib = $(event.currentTarget).children()[1]['innerText'];
+            Session.set('individual_contribution', vendor_contrib);
+        }
+    });
+
     Template.vendors.vendor_name = function(){
-        return Session.get('vendors') ? Session.get('vendors')['vendor_name'] : '';
+        return Session.get('vendorMatch') ? Session.get('vendorMatch')['vendor_name'] : '';
     }
+    Template.vendors.amount = function(){
+        return Session.get('vendorMatch') ? Session.get('vendorMatch')['dollar_amount'] : '';
+    }
+    Template.vendors.contribution = function(){
+        return Session.get('individual_contribution') ? Session.get('individual_contribution') : '';
+    }
+
 
     Handlebars.registerHelper('arrayify',function(obj){
         result = [];
@@ -91,7 +106,6 @@ if (Meteor.isClient) {
                         employer:obj[i]['contributor_employer']
             })
         }
-        console.log(obj);
         return result;
     });
 }

@@ -29,11 +29,6 @@
                 {{> donations}}
             </div>
         </div>
-        <div class='vendors row'>
-            <div class='span6'>
-                {{> vendors}}
-            </div>
-        </div>
     </div>
     <div class='container'>
         <div class="row">
@@ -43,6 +38,12 @@
                 </div>
             </div>
         </div>
+        <div class='vendors row'>
+            <div class='span6'>
+                {{> vendors}}
+            </div>
+        </div>
+    </div>
 </body>
 
 
@@ -84,7 +85,7 @@
                     <div>Donor City:{{city}}</div>
                     <div>Contributor Name:{{person_name}}</div>
                     <div>Occupation:{{occupation}}</div>
-                    <div>Employer:{{employer}}</div>
+                    <div class='employer' id="{{employer}}">Employer:{{employer}}</div>
                     <div>Contributor Type:{{contrib_type}}</div>
                 </div>
             {{/each}}
@@ -102,7 +103,11 @@
 
 <template name='vendors'>
     <div>
-        Vendor: ${{expenditure}}
-        Vendor Name: {{vendor_name}}
+        Vendor: {{vendor_name}}
+        <img src='http://localhost:3000/person-icon.png' class='vendor-icon'/>
+        <div><img src='http://localhost:3000/green-arrow.png' class='rep-payback'/>$</div>
+        <div><img src='http://localhost:3000/Red_Arrow.png' class='rep-payback'/></div>
+        Donated: {{contribution}}
+        Money From City: {{amount}}
     </div>
 </template>

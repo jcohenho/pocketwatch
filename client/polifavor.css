@@ -106,3 +106,13 @@ figure img:hover{
 .single-donation:nth-child(even){
   background-color: #f5f5f5;
 }
+
+.vendor-icon{
+  height: 100px;
+}
+.rep-payback{
+  height: 50px;
+}
+.vendor-contribution{
+  height: 50px;
+}
