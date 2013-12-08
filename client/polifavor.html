@@ -47,6 +47,8 @@
             </div>
         </div>
     </section>
+    <footer>
+    </footer>
 </body>
 
 
@@ -95,13 +97,20 @@
 </template>
 
 <template name='repoverview'>
-    <div class='rep-details'>
-        <div>
-            <img src={{photo}}></img>
+<div class='row'>
+    <div class='span6'>
+        <div class='rep-details'>
+            <div>
+                <img src={{photo}}></img>
+            </div>
+            <div class='rep-bio'>{{bio}}</div>
+            <div class='contributions-to-date'><h4>{{$contribution_sums}}</h4></div>
         </div>
-        <div class='rep-bio'>{{bio}}</div>
-        <div class='contributions-to-date'><h4>{{$contribution_sums}}</h4></div>
     </div>
+    <div class='span6'>
+        <img src='../hands_shakin.png' class='handshake'/>
+    </div>
+</div>
 </template>
 
 <template name='vendors'>

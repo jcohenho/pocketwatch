@@ -198,3 +198,16 @@ figcaption {
 
 }
 
+.handshake {
+
+margin-top: 200px;
+
+}
+
+footer {
+background: url('../stars_stripes.png') no-repeat;
+    border: none;
+    height: 150px;
+text-align: center;
+
+}
