@@ -8,7 +8,7 @@ if (Meteor.isClient) {
 
 
     Template.content.res = function () {
-        return Session.get('data');
+        return Session.get('data').content;
     };
 
     Template.hello.events({
