@@ -47,8 +47,8 @@ if (Meteor.isClient) {
 
     Template.content.events({
         'click .info': function(event){
-            console.log('clicked');
-            var name = encodeURI($(event.currentTarget).siblings().attr('id'));
+            console.log($(event.currentTarget).children().attr('id'));
+            var name = encodeURI($(event.currentTarget).children().attr('id'));
             Meteor.call('getRepOverview', function(err, res){
                 Session.set('sunlight-data', res);
             });

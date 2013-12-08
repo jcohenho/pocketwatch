@@ -2,3 +2,7 @@
 figure {
     width: 33%;
 }
+
+figure img:hover{
+  opacity: 0.5;
+};
