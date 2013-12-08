@@ -175,7 +175,7 @@ input[type="button"]{
 
 .given-to-rep{
   height: 60px;
-  background-color: red;
+  background-color: #FF1D25;
   width: 25%;
   float: left;
   color: #fff;
@@ -185,7 +185,7 @@ input[type="button"]{
 
 .given-from-rep{
   height: 60px;
-  background-color: blue;
+  background-color: #146DA3;
   width: 75%;
   color: #fff;
   padding-top: 20px;
@@ -208,6 +208,7 @@ footer {
 background: url('../stars_stripes.png') no-repeat;
     border: none;
     height: 150px;
-text-align: center;
+    margin-top: 40px;
+    text-align: center;
 
 }
