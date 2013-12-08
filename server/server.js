@@ -1,4 +1,7 @@
 if (Meteor.isServer) {
+    Meteor.startup( function() {
+        Officials.remove({});
+    });
     Meteor.methods({
         fetchOfficialData: function(address) {
             Officials.remove({});
