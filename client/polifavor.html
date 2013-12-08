@@ -70,11 +70,18 @@
 
 <template name='donations'>
     <div class="row">
-        <div class="span6">
-          <div>Total Received: </div>
-        </div>
-        <div>
-            <div>Top Donations: {{biggest_donations}}</div>
+        <div class='donation-list'>
+            {{#each arrayify donation_collection}}
+                <div class='single-donation'>
+                    <div>Organization Name:{{org_name}}</div>
+                    <div>Amount:${{amount}}</div>
+                    <div>Donor City:{{city}}</div>
+                    <div>Contributor Name:{{person_name}}</div>
+                    <div>Occupation:{{occupation}}</div>
+                    <div>Employer:{{employer}}</div>
+                    <div>Contributor Type:{{contrib_type}}</div>
+                </div>
+            {{/each}}
         </div>
     </div>
 </template>

@@ -16,3 +16,16 @@ figure img:hover{
   height: 200px;
   overflow-y: scroll;
 }
+
+.donation-list{
+  height: 300px;
+  overflow: scroll;
+}
+
+.single-donation{
+  margin: 20px 0 0 0;
+}
+
+.single-donation:nth-child(even){
+  background-color: #f5f5f5;
+}

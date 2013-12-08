@@ -32,6 +32,10 @@ if (Meteor.isClient) {
         return Session.get('contributions') ? Session.get('contributions').data[0] : '';
     };
 
+    Template.donations.donation_collection = function(){
+        return Session.get('campaignContribs') ? Session.get('campaignContribs').data : '';
+    }
+
     Template.content.officials = function () {
         return Officials.find();
     };
@@ -48,7 +52,6 @@ if (Meteor.isClient) {
 
     Template.content.events({
         'click .info': function(event){
-            console.log($(event.currentTarget).children().attr('id'));
             var name = encodeURI($(event.currentTarget).children().attr('id'));
             Meteor.call('getRepOverview', function(err, res){
                 Session.set('sunlight-data', res);
@@ -63,7 +66,6 @@ if (Meteor.isClient) {
                 });
             });
             Meteor.call('getCampaignContributions', name, function(err, res){
-                console.log(res);
                 Session.set('campaignContribs', res);
             });
             Meteor.call('getVendorMatch', function(err, res){
@@ -78,6 +80,20 @@ if (Meteor.isClient) {
     Template.vendors.vendor_name = function(){
         return Session.get('vendors') ? Session.get('vendors')['vendor_name'] : '';
     }
+
+    Handlebars.registerHelper('arrayify',function(obj){
+        result = [];
+        for(var i=0; i< obj.length; i++){
+
+            result.push({org_name:obj[i]['organization_name'], amount:obj[i]['amount'],
+                        city:obj[i]['contributor_city'], person_name:obj[i]['contributor_name'],
+                        occupation:obj[i]['contributor_occupation'], contrib_type:obj[i]['contributor_type'],
+                        employer:obj[i]['contributor_employer']
+            })
+        }
+        console.log(obj);
+        return result;
+    });
 }
 
 
