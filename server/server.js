@@ -10,13 +10,21 @@ if (Meteor.isServer) {
                     officials_data = res.data.officials;
                     for (var i = 0; i < Object.keys(officials_data).length; i++) {
                         var p_index = 'P' + i;
-                        Officials.insert({
+                        if (!officials_data[p_index].photoUrl) {
+                            var photo = 'http://lorempixel.com/90/110/';
+                        }
+                        else {
+                            var photo = officials_data[p_index].photoUrl;
+                        }
+                        params = {
                             name: officials_data[p_index].name,
                             address: officials_data[p_index].address,
                             channels: officials_data[p_index].channels,
                             party: officials_data[p_index].party,
-                            photo: officials_data[p_index].photoUrl
-                        });
+                            photo: photo
+                        }
+                        Officials.insert(params);
+
                     }
                 }
             });
