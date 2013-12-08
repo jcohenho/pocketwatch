@@ -142,9 +142,31 @@ figure {
 }
 
 
-
 input[type="button"]{
       background: #fff;
       border: 1px solid #000;
     padding: 5px;
   }
+.contribution-wrapper{
+  width: 1000px;
+  height: 60px;
+}
+
+.given-to-rep{
+  height: 60px;
+  background-color: red;
+  width: 25%;
+  float: left;
+  color: #fff;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.given-from-rep{
+  height: 60px;
+  background-color: blue;
+  width: 75%;
+  color: #fff;
+  padding-top: 20px;
+  text-align: center;
+}

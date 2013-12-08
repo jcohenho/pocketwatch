@@ -100,9 +100,9 @@
     <div>
         Vendor: {{vendor_name}}
         <img src='http://localhost:3000/person-icon.png' class='vendor-icon'/>
-        <div><img src='http://localhost:3000/green-arrow.png' class='rep-payback'/>$</div>
-        <div><img src='http://localhost:3000/Red_Arrow.png' class='rep-payback'/></div>
-        Donated: {{contribution}}
-        Money From City: {{amount}}
+        <div class='contribution-wrapper'>
+            <div class='given-to-rep'>Donated To Rep: {{contribution}}</div>
+            <div class='given-from-rep'>Money From City: {{amount}}</div>
+        </div>
     </div>
 </template>
