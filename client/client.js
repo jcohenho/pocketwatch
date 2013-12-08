@@ -5,7 +5,8 @@ if (Meteor.isClient) {
         if (bio == undefined){
             return 'Not Available'
         } else{
-            return bio;
+            var escaped_bio = bio.replace(/(<([^>]+)>)/ig,"");
+            return escaped_bio;
         }
     }
 
