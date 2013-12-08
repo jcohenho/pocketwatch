@@ -26,7 +26,7 @@ if (Meteor.isClient) {
             if (!address) {
                 alert('Enter in your address!');
             }
-            Meteor.call('fetchOfficialData', address);
+            Meteor.call('fetchOfficialData', address, function (error, result) {} );
         }
     });
 
