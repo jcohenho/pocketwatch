@@ -41,14 +41,37 @@ body {
     margin: 0 auto;
     display: block;
 }
+
+figure#logo {
+
+    margin-bottom: 40px;
+}
+
+#logo {
+    width: 360px;
+    margin: 0 auto;
+}
+
 .intro-header {
     color: #FFF;
 }
+
+h1 {
+font-size: 64px;
+font-weight: 50em;
+width: 400px;
+margin: 0 auto;
+text-align: center;
+}
+
+
 h2 {
-font-size: 3.5em;
-display: block;
-line-height: 1.125em;
-font-weight: 300em;
+    margin-top: 60px;
+    font-size: 2.5em;
+    display: block;
+    line-height: 1.125em;
+    font-weight: 300em;
+    text-align: center;
 }
 
 .main.dark {
