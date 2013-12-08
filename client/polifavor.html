@@ -16,8 +16,23 @@
                 {{> input }}
             </div>
         </div>
+        <div class='row'>
+            <div class='span6'>
+                {{> donations}}
+                {{> repoverview}}
+            </div>
+        </div>
+        <div class='vendors row'>
+            <div class='span6'>
+                {{> vendors}}
+            </div>
+        </div>
     </div>
 </body>
+
+
+
+
 <template name="content">
     <div class="row">
                 {{#each officials}}
@@ -37,11 +52,35 @@
 </template>
 
 
-
 <template name="input">
     <div id="input" class="well">
         <strong>Enter your address</strong>
         <input type="text" placeholder="Your address..." id="address" />
         <input type="button" value="Click" id="search" />
+    </div>
+</template>
+
+<template name='donations'>
+    <div class="row">
+        <div class="span6">
+          <div>Total Received: </div>
+        </div>
+        <div>
+            <div>Top Donations: {{biggest_donations}}</div>
+        </div>
+    </div>
+</template>
+
+<template name='repoverview'>
+    <div>
+        Bio: {{bio}}
+        Photo: <img src={{photo}}></img>
+    </div>
+</template>
+
+<template name='vendors'>
+    <div>
+        Vendor: ${{expenditure}}
+        Vendor Name: {{vendor_name}}
     </div>
 </template>
