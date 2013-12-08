@@ -10,13 +10,7 @@ if (Meteor.isClient) {
         return Officials.find();
     };
 
-    Template.hello.events({
-        'click input' : function () {
-        // template data, if any, is available in 'this'
-        if (typeof console !== 'undefined')
-            alert("You pressed the button");
-        }
-    });
+
 }
 
 
