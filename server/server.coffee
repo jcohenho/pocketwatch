@@ -2,7 +2,6 @@ if Meteor.isServer
 	Meteor.startup ->
 		Meteor.startup ->
 			Officials.remove {}
-			console.log 'asdfasdf'
 	Meteor.methods
   	fetchOfficialData: (address) ->
     	Officials.remove {}
@@ -12,25 +11,21 @@ if Meteor.isServer
       	address: address
 
     	Meteor.http.post url, data, (err, res) ->
-      	console.log res.content
       	if res.statusCode is 200
-        	officials_data = res.data.officials
-        	i = 0
-        	while i < Object.keys(officials_data).length
-          	p_index = "P" + i
-          	unless officials_data[p_index].photoUrl
+          console.log res
+          officials_data = res.data.officials
+          for pIndex, official of officials_data
+          	unless official.photoUrl
             	photo = "http://www.ihssports.org/portals/2/profilephotos/person-icon.png"
           	else
-            	photo = officials_data[p_index].photoUrl
+            	photo = official.photoUrl
           	params =
-            	name: officials_data[p_index].name
-            	address: officials_data[p_index].address
-            	channels: officials_data[p_index].channels
-            	party: officials_data[p_index].party
+            	name: official.name
+            	address: official.address
+            	channels: official.channels
+            	party: official.party
             	photo: photo
-
-          	Officials.insert params
-          	i++
+          	Officials.insert(params)
   	getRepInfo: (name) ->
   		@unblock()
   		API_KEY = 'cfa496ce390e49b0b57d5ddab36e70a2'

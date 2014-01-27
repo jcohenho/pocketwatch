@@ -1,7 +1,7 @@
 if Meteor.isClient
 	Template.repoverview.bio = ->
-		bio = 'asdfasdf'
-		if bio is undefined
+		bio = (if Session.get("repOverview") then Session.get("repOverview").data.metadata.bio else "")
+		if bio is ''
 			'not available'
 		else
 			escaped_bio = bio.replace(/(<([^>]+)>)/g, "")
@@ -42,7 +42,6 @@ if Meteor.isClient
 	Template.content.events "click .info": (event) ->
 		name = encodeURI $(event.currentTarget).children().attr 'id'
 		Meteor.call "getRepInfo", name, (err, res) ->
-			console.log res
 			if res.content isnt "[]"
 				Session.set "repInfo", res
 			else
@@ -56,7 +55,7 @@ if Meteor.isClient
 			Session.set "campaignContribs", res
 
 	Template.donations.events "click .single-donation": (event) ->
-		employer.encodeURI $(event.currentTarget).children()[5].id
+		employer = encodeURI $(event.currentTarget).children()[5].id
 		employer = employer.replace("&", "and")
 		Meteor.call "getVendorMatch", employer, (err, res) ->
 			Session.set "vendorMatch", res.data[0]
