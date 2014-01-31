@@ -12,20 +12,24 @@ if Meteor.isServer
 
     	Meteor.http.post url, data, (err, res) ->
       	if res.statusCode is 200
-          console.log res
+          officesData = res.data.offices
           officials_data = res.data.officials
-          for pIndex, official of officials_data
-          	unless official.photoUrl
-            	photo = "http://www.ihssports.org/portals/2/profilephotos/person-icon.png"
-          	else
-            	photo = official.photoUrl
-          	params =
-            	name: official.name
-            	address: official.address
-            	channels: official.channels
-            	party: official.party
-            	photo: photo
-          	Officials.insert(params)
+          for OfficeIndex, office of officesData
+            for officeId in office.officialIds
+              official = officials_data[officeId]
+              if official.photoUrl is undefined
+                photo = "http://www.ihssports.org/portals/2/profilephotos/person-icon.png"
+              else
+                photo = official.photoUrl
+              params =
+                name: official.name
+                office: office.name
+                level: office.level
+                address: official.address
+                channels: official.channels
+                party: official.party
+                photo: photo
+              Officials.insert(params)
   	getRepInfo: (name) ->
   		@unblock()
   		API_KEY = 'cfa496ce390e49b0b57d5ddab36e70a2'
