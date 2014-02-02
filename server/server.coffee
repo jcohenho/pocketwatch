@@ -33,7 +33,7 @@ if Meteor.isServer
   	getRepInfo: (name) ->
   		@unblock()
   		API_KEY = 'cfa496ce390e49b0b57d5ddab36e70a2'
-  		url = "http://transparencydata.com/api/1.0/entities.json?search=" + name + "&apikey=" + API_KEY
+  		url = "http://transparencydata.com/api/1.0/entities.json?search=#{name}&apikey=#{API_KEY}"
   		Meteor.http.call "GET", url
 
   	getRepId: (name) ->

@@ -11,3 +11,4 @@ bootstrap
 http
 coffeescript
 less
+jquery-xml2json

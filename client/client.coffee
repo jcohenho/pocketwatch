@@ -1,7 +1,7 @@
 if Meteor.isClient
 	Template.repoverview.bio = ->
 		bio = (if Session.get("repOverview") then Session.get("repOverview").data.metadata.bio else "")
-		if bio is ''
+		if bio is '' or bio is undefined
 			'not available'
 		else
 			escaped_bio = bio.replace(/(<([^>]+)>)/g, "")
@@ -40,15 +40,32 @@ if Meteor.isClient
 			Session.set('repOverview', res))
 
 	Template.content.events "click .info": (event) ->
-		name = encodeURI $(event.currentTarget).children().attr 'id'
+		id = $(event.currentTarget).children().attr 'id'
+		littleSisMapping =
+			'Eric Garcetti': 111427
+			'Tom Torlakson': 137636
+			'Leroy Baca': 87978
+			'John Noguez': 94427
+			'Edmund Gerald Brown, Jr.': 33962
+			'Debra Bowen': 134193
+		influenceExplorerMapping =
+			"Barack Hussein Obama II": "Barack Obama"
+			"Joseph (Joe) Robinette Biden Jr.": "Joseph Biden"
+			"Edmund Gerald Brown, Jr.": "Jerry Brown"
+		if influenceExplorerMapping[id] != undefined
+			id = influenceExplorerMapping[id]
+		name = encodeURI id
 		Meteor.call "getRepInfo", name, (err, res) ->
 			if res.content isnt "[]"
 				Session.set "repInfo", res
+				setTimeout(callGetRepOverview(res), 500)
 			else
-				Session.set "repInfo", "No Data On File"
-		Meteor.call "getRepId", name, (err, res) ->
-			Session.set("repId", res)
-			setTimeout(callGetRepOverview(res), 500)
+				apiId = littleSisMapping[id]
+				console.log 'littlesis'
+				Meteor.http.call "GET", "http://api.littlesis.org/entity/#{apiId}/details.xml?_key=7fcd3c0924f2597b9deba56c9f39ed4473405ae3", (error, result) ->
+					littleSisData = $.xml2json(result.content).Response.Data.Entity
+					console.log littleSisData
+					#setTimeout(Session.set('repOverview', littleSisData), 500)
 
 
 		Meteor.call "getCampaignContributions", name, (err, res) ->
