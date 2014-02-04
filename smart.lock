@@ -1,0 +1,26 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "xml2js": {},
+      "jquery-xml2json": {}
+    },
+    "packages": {
+      "xml2js": {
+        "git": "https://github.com/peerlibrary/meteor-xml2js.git",
+        "tag": "v0.2.8.4",
+        "commit": "98ba391239dd79901a7718593b48c1a7e6b0f7b2"
+      },
+      "jquery-xml2json": {
+        "git": "https://github.com/sergeyt/jQuery-xml2json.git",
+        "tag": "v0.0.5",
+        "commit": "23eab71f28d1762d7ef6d4b930a1c513c172aee0"
+      },
+      "blocking": {
+        "git": "https://github.com/peerlibrary/meteor-blocking.git",
+        "tag": "v0.4.0",
+        "commit": "e25a0be72e771b317b26d2bb5758c983bdcef23c"
+      }
+    }
+  }
+}
