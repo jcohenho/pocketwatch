@@ -17,7 +17,8 @@ if Meteor.isServer
           for OfficeIndex, office of officesData
             for officeId in office.officialIds
               official = officials_data[officeId]
-              unless official.name is ('Tom LaBonge' or 'Ron Galperin' or 'Tom LaBonge')
+              unless official.name is 'Tom LaBonge' or official.name is 'Ron Galperin'
+                console.log official.name
                 if official.photoUrl is undefined
                   photo = "http://www.ihssports.org/portals/2/profilephotos/person-icon.png"
                 else
