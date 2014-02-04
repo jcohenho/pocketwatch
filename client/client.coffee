@@ -56,6 +56,8 @@ if Meteor.isClient
 			id = influenceExplorerMapping[id]
 		name = encodeURI id
 		Meteor.call "getRepInfo", name, (err, res) ->
+			console.log "Sunlight Data"
+			console.log res
 			if res.content isnt "[]"
 				Session.set "repInfo", res
 				setTimeout(callGetRepOverview(res), 500)

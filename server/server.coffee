@@ -17,19 +17,20 @@ if Meteor.isServer
           for OfficeIndex, office of officesData
             for officeId in office.officialIds
               official = officials_data[officeId]
-              if official.photoUrl is undefined
-                photo = "http://www.ihssports.org/portals/2/profilephotos/person-icon.png"
-              else
-                photo = official.photoUrl
-              params =
-                name: official.name
-                office: office.name
-                level: office.level
-                address: official.address
-                channels: official.channels
-                party: official.party
-                photo: photo
-              Officials.insert(params)
+              unless official.name is ('Tom LaBonge' or 'Ron Galperin' or 'Tom LaBonge')
+                if official.photoUrl is undefined
+                  photo = "http://www.ihssports.org/portals/2/profilephotos/person-icon.png"
+                else
+                  photo = official.photoUrl
+                params =
+                  name: official.name
+                  office: office.name
+                  level: office.level
+                  address: official.address
+                  channels: official.channels
+                  party: official.party
+                  photo: photo
+                Officials.insert(params)
   	getRepInfo: (name) ->
   		@unblock()
   		API_KEY = 'cfa496ce390e49b0b57d5ddab36e70a2'
