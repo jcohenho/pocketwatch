@@ -1,7 +1,6 @@
 if Meteor.isServer
 	Meteor.startup ->
-		Meteor.startup ->
-			Officials.remove {}
+	  Officials.remove {}
 	Meteor.methods
   	fetchOfficialData: (address) ->
     	Officials.remove {}
